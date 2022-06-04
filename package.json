@@ -1,13 +1,13 @@
 {
-  "name": "<NAME>",
+  "name": "@strdcoders/radarr-api",
   "version": "1.0.0",
-  "description": "<DESCRIPTION>",
+  "description": "A Typescript api for Radarr PVR service",
   "author": "STRDcoders",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "<REPOURL>"
+    "url": "https://github.com/STRDCoders/radarr-api.git"
   },
   "scripts": {
     "build": "tsc -sourcemap -p ./tsconfig.json",
