@@ -1,11 +1,18 @@
 import { RadarrWebClient } from "../web-client/radarr-web-client";
 import { RadarrQueueRecord } from "../model/RadarrQueueRecord";
+import { Constants } from "../utils/constants";
 
 export class RadarrMediaService {
   private radarrWebClient;
 
-  constructor(baseUrl: string, timeout: number = 3000, apiKey: string, selfSignedSSL: boolean = false) {
-    this.radarrWebClient = new RadarrWebClient(baseUrl, timeout, apiKey, selfSignedSSL);
+  constructor(
+    baseUrl: string,
+    apiKey: string,
+    selfSignedSSL: boolean = false,
+    timeout: number = Constants.radarr.default.timeout,
+    baseApiPath: string = Constants.radarr.default.baseApiPath
+  ) {
+    this.radarrWebClient = new RadarrWebClient(baseUrl, baseApiPath, apiKey, selfSignedSSL, timeout);
   }
 
   /**
@@ -17,6 +24,8 @@ export class RadarrMediaService {
    * @return { Promise<Array<RadarrQueueRecord>> } - A promise with the records found by the search query.
    */
   async getDownloadQueue(page: number, pageSize?: number): Promise<Array<RadarrQueueRecord>> {
-    return this.radarrWebClient.getDownloadQueue(page, pageSize);
+    return this.radarrWebClient.getDownloadQueue(page, pageSize, (error) => {
+      console.log(error);
+    });
   }
 }
